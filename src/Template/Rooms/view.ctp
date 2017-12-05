@@ -40,6 +40,7 @@
         </tr>
     </table>
     <div class="related">
+        <?php debug($showtimesByDayNumber) ?>
         <h4><?= __('Related Showtimes') ?></h4>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -50,7 +51,6 @@
                 <th scope="col"><?= __('End') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($showtimesTab as $showtime): ?>
             <tr>
@@ -61,11 +61,6 @@
                 <td><?= h($showtime->end) ?></td>
                 <td><?= h($showtime->created) ?></td>
                 <td><?= h($showtime->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Showtimes', 'action' => 'view', $showtime->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Showtimes', 'action' => 'edit', $showtime->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Showtimes', 'action' => 'delete', $showtime->id], ['confirm' => __('Are you sure you want to delete # {0}?', $showtimes->id)]) ?>
-                </td>
             </tr>
             <?php endforeach; ?>
         </table>

@@ -40,17 +40,25 @@ class RoomsController extends AppController
         $dateCompare = new Time();
         $dateCompare -> modify('+7days');
         $now = new Time();
-       $showtimesTab = $this->Rooms->Showtimes
+        $showtimes = $this->Rooms->Showtimes
             ->find()
             //->select(['start'])
             ->where(['start >=' => $now])
             ->where(['start <=' => $dateCompare])
-            
             ->order(['created' => 'DESC']);
-        
     
-            $this->set(compact('room', 'showtimesTab'));
+            $this->set(compact('room', 'showtimes'));
             $this->set('_serialize', ['rooms']);
+            
+            
+            $items = ['1', '2', '3', '4', '5', '6', '7'];
+            
+            $showtimesByDayNumber = [];
+            foreach($showtimes as $showtime){
+                $showtimesByDayNumber[$showtime->start->format('N')][] = $showtime;
+            }
+            
+            $this->set('showtimesByDayNumber', $showtimesByDayNumber);
         }
         
 
