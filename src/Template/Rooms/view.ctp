@@ -40,8 +40,11 @@
         </tr>
     </table>
     <div class="related">
-        <?php debug($showtimesByDayNumber) ?>
+        <?php ($showtimesByDayNumber) ?>
         <h4><?= __('Related Showtimes') ?></h4>
+        <?php for($i = 1; $i <= 7; $i++){
+                $showtimesByDayNumber[$i];
+            } ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
@@ -52,7 +55,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
             </tr>
-            <?php foreach ($showtimesTab as $showtime): ?>
+            <?php foreach ($showtimesByDayNumber as $showtime): ?>
             <tr>
                 <td><?= h($showtime->id) ?></td>
                 <td><?= h($showtime->movie_id) ?></td>

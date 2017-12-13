@@ -58,6 +58,7 @@ class RoomsController extends AppController
                 $showtimesByDayNumber[$showtime->start->format('N')][] = $showtime;
             }
             
+            
             $this->set('showtimesByDayNumber', $showtimesByDayNumber);
         }
         
