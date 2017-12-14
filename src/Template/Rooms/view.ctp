@@ -39,33 +39,35 @@
             <td><?= h($room->modified) ?></td>
         </tr>
     </table>
+    
     <div class="related">
         <?php ($showtimesByDayNumber) ?>
         <h4><?= __('Related Showtimes') ?></h4>
-        <?php for($i = 1; $i <= 7; $i++){
-                $showtimesByDayNumber[$i];
-            } ?>
+        
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Movie Id') ?></th>
-                <th scope="col"><?= __('Room Id') ?></th>
-                <th scope="col"><?= __('Start') ?></th>
-                <th scope="col"><?= __('End') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
+                <th>Lundi</th>
+                <th>Mardi</th>
+                <th>Mercredi</th>
+                <th>Jeudi</th>
+                <th>Vendredi</th>
+                <th>Samedi</th>
+                <th>Dimanche</th>
             </tr>
-            <?php foreach ($showtimesByDayNumber as $showtime): ?>
+            
             <tr>
-                <td><?= h($showtime->id) ?></td>
-                <td><?= h($showtime->movie_id) ?></td>
-                <td><?= h($showtime->room_id) ?></td>
-                <td><?= h($showtime->start) ?></td>
-                <td><?= h($showtime->end) ?></td>
-                <td><?= h($showtime->created) ?></td>
-                <td><?= h($showtime->modified) ?></td>
+                <?php for ($i = 1; $i < 7; $i++): ?>
+                    <td>
+                        <?php if (isset($showtimesByDayNumber[$i])): ?>
+                        <?php foreach ($showtimesByDayNumber[$i] as $showtime): ?>
+                            <?= $showtime->has('movie') ? $this->Html->link($showtime->movie->name, ['controller' => 'Movies', 'action' => 'view', $showtime->movie->id]) : '' ?>
+                            <?= h($showtime->start) ?>
+                            <?= h($showtime->end) ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                <?php endfor; ?>
             </tr>
-            <?php endforeach; ?>
         </table>
     </div>
 </div>

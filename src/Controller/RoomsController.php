@@ -42,16 +42,15 @@ class RoomsController extends AppController
         $now = new Time();
         $showtimes = $this->Rooms->Showtimes
             ->find()
-            //->select(['start'])
             ->where(['start >=' => $now])
             ->where(['start <=' => $dateCompare])
-            ->order(['created' => 'DESC']);
+            ->contain(['Movies']);
     
             $this->set(compact('room', 'showtimes'));
             $this->set('_serialize', ['rooms']);
             
             
-            $items = ['1', '2', '3', '4', '5', '6', '7'];
+            $items = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
             
             $showtimesByDayNumber = [];
             foreach($showtimes as $showtime){
@@ -60,6 +59,7 @@ class RoomsController extends AppController
             
             
             $this->set('showtimesByDayNumber', $showtimesByDayNumber);
+            $this->set('items', $items);
         }
         
 
