@@ -49,17 +49,12 @@ class RoomsController extends AppController
             $this->set(compact('room', 'showtimes'));
             $this->set('_serialize', ['rooms']);
             
-            
-            $items = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
-            
             $showtimesByDayNumber = [];
             foreach($showtimes as $showtime){
                 $showtimesByDayNumber[$showtime->start->format('N')][] = $showtime;
             }
             
-            
             $this->set('showtimesByDayNumber', $showtimesByDayNumber);
-            $this->set('items', $items);
         }
         
 
